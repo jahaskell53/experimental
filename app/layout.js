@@ -1,8 +1,9 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "Next.js App",
-  description: "A Next.js application",
+  title: "KV cache lab — interactive LLM primer",
+  description:
+    "Step through autoregressive decode, attention over a prefix, and why caching past K/V matters.",
 };
 
 export default function RootLayout({ children }) {

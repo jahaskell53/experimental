@@ -1,7 +1,9 @@
+import KVCacheLab from "./components/KVCacheLab";
+
 export default function Home() {
   return (
-    <main>
-      <h1>Next.js App</h1>
+    <main className="page-main">
+      <KVCacheLab />
     </main>
   );
 }
