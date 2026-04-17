@@ -187,6 +187,15 @@ export default function Home() {
     latency: baseline.appLatency - current.appLatency,
     availability: current.appAvailability - baseline.appAvailability,
   };
+  const activeSolutionCount = Object.values(activeSolutions).filter(Boolean).length;
+  const currentPanelTitle =
+    current.layout === "isolated"
+      ? "Protected topology"
+      : activeSolutionCount > 0
+        ? "Shared host with guardrails"
+        : "Same shared host";
+  const currentStatusClass =
+    current.appDropped > 0 ? "status-warning" : "status-good";
 
   const sharedSegments = [
     { label: "Noisy tenant", width: percent(current.noisyServed, current.capacity), tone: "segment-noisy" },
@@ -342,9 +351,9 @@ export default function Home() {
           <div className="section-header">
             <div>
               <p className="eyebrow">With current selections</p>
-              <h2>{current.layout === "isolated" ? "Protected topology" : "Shared host with guardrails"}</h2>
+              <h2>{currentPanelTitle}</h2>
             </div>
-            <span className="status-badge status-good">{current.status}</span>
+            <span className={`status-badge ${currentStatusClass}`}>{current.status}</span>
           </div>
 
           {current.layout === "isolated" ? (
